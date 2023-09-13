@@ -5,10 +5,39 @@
  Note that there is no constructor or destructor,
  so a default one will be created for us.
 """
-class Rectangle:
+from abc import ABC, abstractclassmethod
+
+class Shape(ABC):
+
+    @abstractclassmethod
+    def set_value(self):
+        pass
+
+    @abstractclassmethod
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+
+    def __init__(self, width, height):
+        self._width = width
+        self._height = height
+
+    def get_width(self):
+        return self._width
+    
+    def get_height(self):
+        return self._height
+    
+    def set_width(self, x):
+        self._width = x
+
+    def set_height(self, x):
+        self._height = x
+
     def set_values(self, x, y):
-        self.width = x
-        self.height = y
+        self._width = x
+        self._height = y
 
     def area(self):
         return self.width * self.height

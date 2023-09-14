@@ -1,6 +1,6 @@
 # TODO Please edit the following information in your assignment
 
-- Name:
+- Name: Sifan Wei
 - How many hours did it take you to complete this assignment?
  - About 4 hours to complete the courses. 
 - Did you collaborate with any other students/TAs/Professors?

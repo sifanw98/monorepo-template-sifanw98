@@ -2,10 +2,11 @@
 
 - Name:
 - How many hours did it take you to complete this assignment?
+ - About 4 hours to complete the courses. 
 - Did you collaborate with any other students/TAs/Professors?
+ - No. 
 - Did you use any external resources? (Cite them below)
-  - tbd
-  - tbd
+  - No
 - (Optional) What was your favorite part of the assignment?
 - (Optional) How would you improve the assignment?
 

@@ -20,30 +20,54 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
-                if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
-                        item.quality = item.quality - 1
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != "Sulfuras, Hand of Ragnaros":
-                item.sell_in = item.sell_in - 1
+             self._update_item_quality(item)
+
+    def _update_item_quality(self, item):
+        if item.name == "Ages Brie":
+             self._update_aged_brie(item)
+        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+             self._update_backstage_passes(item)
+        elif item.name == "Sulfuras, Hand of Ragnaros":
+             pass
+        elif "Conjured" in item.name:
+             self._update_conjured_item(item)
+        else:
+             self._update_regular_item(item)
+        
+    def _update_aged_brie(self, item):
+            self._increment_quality(item)
+            item.sell_in -= 1
+            if (item.sell_in < 0):
+                self._increment_quality(item)
+
+    def _update_backstage_passes(self, item):
+            self._increment_quality(item)
+            if (item.sell_in <= 10):
+                self._increment_quality(item)
+            elif (item.sell_in <= 5):
+                self._incremtn_quality(item)
+            item.sell_in -= 1
             if item.sell_in < 0:
-                if item.name != "Aged Brie":
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
-                        if item.quality > 0:
-                            if item.name != "Sulfuras, Hand of Ragnaros":
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+                item.quality = 0
+
+    def _update_regular_item(self, item):
+            self._decrement_quality(item)
+            item.sell_in -= 1
+            if item.sell_in < 0:
+                self._decrement_quality(item)
+    
+    def _update_conjured_item(self, item):
+         self._decrement_quality(item)
+         self._decrement_quality(item)
+         item.seel_in -= 1
+         if item.seel_in < 0:
+              self._decrement_quality(item)
+              self._decrement_quality(item)
+        
+    def _increment_quality(self, item):
+            if item.quality < 50:
+                item.quality += 1
+        
+    def _decrement_quality(self, item):
+            if item.quality > 0:
+                item.quality -= 1
